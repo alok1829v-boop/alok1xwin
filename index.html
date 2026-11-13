@@ -1,0 +1,95 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alok1xwin</title>
+<style>
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+    background: #080d1b;
+      color: white;
+        font-family: Arial, sans-serif;
+        }
+        header {
+          padding: 20px;
+            background: #111a2e;
+              border-bottom: 2px solid #ed263d;
+                display: flex;
+                  justify-content: space-between;
+                  }
+                  .logo { color: #ff3048; font-size: 25px; font-weight: bold; }
+                  .balance { color: #ffd700; }
+                  main { padding: 18px; text-align: center; }
+                  .game {
+                    margin-top: 25px;
+                      background: linear-gradient(140deg,#172b4c,#260b20);
+                        border: 1px solid #ff3048;
+                          border-radius: 18px;
+                            padding: 35px 12px;
+                            }
+                            h1 { color: #ff3048; }
+                            #plane { font-size: 65px; }
+                            #multiplier { font-size: 48px; color: #43efaa; }
+                            button {
+                              background: #ed263d;
+                                color: white;
+                                  border: 0;
+                                    border-radius: 10px;
+                                      padding: 14px 25px;
+                                        font-size: 17px;
+                                        }
+                                        .panel {
+                                          margin-top: 20px;
+                                            padding: 18px;
+                                              background: #172238;
+                                                border-radius: 14px;
+                                                }
+                                                </style>
+                                                </head>
+                                                <body>
+                                                <header>
+                                                  <div class="logo">✈ ALOK1XWIN</div>
+                                                    <div class="balance">Demo Coins: 1000</div>
+                                                    </header>
+                                                    <main>
+                                                      <h1>AVIATOR</h1>
+                                                        <div class="game">
+                                                            <div id="plane">✈️</div>
+                                                                <div id="multiplier">1.00x</div>
+                                                                    <p id="status">DEMO GAME READY</p>
+                                                                        <button onclick="startGame()">START DEMO</button>
+                                                                          </div>
+                                                                            <div class="panel">
+                                                                                <h3>🌐 MULTIPLAYER ROOM</h3>
+                                                                                    <p>Players Online: Demo Mode</p>
+                                                                                        <p>Virtual Coins Only</p>
+                                                                                          </div>
+                                                                                            <div class="panel">
+                                                                                                <h3>🏆 LEADERBOARD</h3>
+                                                                                                    <p>Welcome to Alok1xwin</p>
+                                                                                                      </div>
+                                                                                                      </main>
+                                                                                                      <script>
+                                                                                                      function startGame() {
+                                                                                                        let value = 1;
+                                                                                                          document.getElementById("status").textContent = "DEMO ROUND RUNNING";
+                                                                                                            document.getElementById("plane").textContent = "✈️";
+                                                                                                              clearInterval(window.gameTimer);
+                                                                                                                window.gameTimer = setInterval(() => {
+                                                                                                                    value += 0.05;
+                                                                                                                        document.getElementById("multiplier").textContent =
+                                                                                                                              value.toFixed(2) + "x";
+                                                                                                                                  if(value >= 3) {
+                                                                                                                                        clearInterval(window.gameTimer);
+                                                                                                                                              document.getElementById("status").textContent =
+                                                                                                                                                      "DEMO ROUND FINISHED";
+                                                                                                                                                          }
+                                                                                                                                                            }, 200);
+                                                                                                                                                            }
+                                                                                                                                                            </script>
+                                                                                                                                                            </body>
+                                                                                                                                                            </html>
+                                                                                                                                                            
