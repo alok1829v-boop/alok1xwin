@@ -3,313 +3,354 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alok1xwin - Aviator Crash Game</title>
+    <title>Alok1xwin - Gaming Hub</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            user-select: none;
         }
         body {
-            background-color: #0e0e10;
+            background-color: #121312;
             color: #ffffff;
             display: flex;
-            flex-direction: column;
-            align-items: center;
+            justify-content: center;
             min-height: 100vh;
+            overflow-x: hidden;
         }
-        header {
+        .app-shell {
             width: 100%;
-            max-width: 600px;
-            background: #1b1c1d;
-            padding: 15px 20px;
+            max-width: 480px;
+            background-color: #161816;
+            min-height: 100vh;
+            position: relative;
+            padding-bottom: 80px;
+            box-shadow: 0 0 25px rgba(0,0,0,0.8);
+        }
+
+        /* Top Header */
+        .top-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid #2c2d30;
+            padding: 12px 15px;
+            background: #1b1d1b;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            border-bottom: 1px solid #2a2d2a;
         }
-        .logo {
-            font-size: 22px;
-            font-weight: bold;
-            color: #e50914;
-            letter-spacing: 1px;
-        }
-        .logo span {
-            color: #ffffff;
-        }
-        .balance-box {
-            background: #26282b;
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-weight: bold;
-            color: #28a745;
-            border: 1px solid #3a3d42;
-        }
-        .history-bar {
-            width: 100%;
-            max-width: 600px;
-            background: #141516;
-            padding: 8px 15px;
+        .header-left {
             display: flex;
-            gap: 8px;
-            overflow-x: auto;
-            border-bottom: 1px solid #222;
+            align-items: center;
+            gap: 10px;
         }
-        .badge {
-            padding: 3px 10px;
-            border-radius: 12px;
-            font-size: 12px;
-            font-weight: bold;
-            background: #26282b;
-        }
-        .badge.low { color: #3498db; }
-        .badge.mid { color: #9b59b6; }
-        .badge.high { color: #e91e63; }
-        .game-container {
-            width: 95%;
-            max-width: 580px;
-            height: 280px;
-            background: radial-gradient(circle at bottom left, #3a0ca3 0%, #141516 70%);
-            margin-top: 15px;
-            border-radius: 16px;
-            position: relative;
-            overflow: hidden;
-            border: 1px solid #2c2d30;
+        .brand-icon {
+            width: 34px;
+            height: 34px;
+            background: #f5d000;
+            color: #121312;
+            border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
-            flex-direction: column;
+            font-weight: 900;
+            font-size: 16px;
+            box-shadow: 0 0 10px rgba(245, 208, 0, 0.4);
         }
-        canvas {
+        .wallet-pill {
+            background: #252825;
+            border: 1px solid #363a36;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            padding: 4px 4px 4px 10px;
+            gap: 10px;
+        }
+        .wallet-amount {
+            font-weight: bold;
+            font-size: 14px;
+            color: #ffffff;
+        }
+        .add-btn {
+            background: #f5d000;
+            color: #000;
+            border: none;
+            width: 26px;
+            height: 26px;
+            border-radius: 6px;
+            font-weight: bold;
+            font-size: 18px;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .icon-btn {
+            font-size: 18px;
+            color: #b0b5b0;
+            cursor: pointer;
+            position: relative;
+        }
+        .vip-avatar {
+            position: relative;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #f5d000, #ff8c00);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 18px;
+            border: 2px solid #f5d000;
+        }
+        .vip-tag {
             position: absolute;
+            top: -6px;
+            right: -6px;
+            background: #2b2e2b;
+            color: #f5d000;
+            font-size: 9px;
+            font-weight: bold;
+            padding: 1px 4px;
+            border-radius: 4px;
+            border: 1px solid #f5d000;
+        }
+
+        /* Top Winners Ticker */
+        .winners-strip {
+            display: flex;
+            gap: 10px;
+            padding: 12px 15px;
+            overflow-x: auto;
+            background: #141614;
+        }
+        .winners-strip::-webkit-scrollbar { display: none; }
+        .winner-card {
+            min-width: 95px;
+            background: #202320;
+            border-radius: 10px;
+            padding: 6px;
+            text-align: center;
+            border: 1px solid #2e322e;
+        }
+        .winner-thumb {
+            height: 55px;
+            border-radius: 6px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .winner-mult {
+            color: #f5d000;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        /* Quick Category Row */
+        .cat-tabs {
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 15px;
+            border-bottom: 1px solid #242724;
+        }
+        .cat-tab {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 4px;
+            color: #9fa59f;
+            font-size: 12px;
+            cursor: pointer;
+        }
+        .cat-tab.active {
+            color: #f5d000;
+        }
+        .cat-tab span {
+            font-size: 20px;
+        }
+
+        /* Section Title */
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 15px 10px;
+        }
+        .section-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: #ffffff;
+        }
+        .all-games-btn {
+            background: #252825;
+            color: #ccc;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-size: 12px;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* Game Grid */
+        .game-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            padding: 0 15px;
+        }
+        .game-card {
+            border-radius: 14px;
+            overflow: hidden;
+            position: relative;
+            height: 150px;
+            cursor: pointer;
+            transition: transform 0.2s;
+            border: 1px solid #333833;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 12px;
+        }
+        .game-card:active {
+            transform: scale(0.96);
+        }
+        .provider-badge {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background: #e50914;
+            color: white;
+            font-size: 10px;
+            font-weight: bold;
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+        .provider-badge.blue { background: #2980b9; }
+        .game-emoji {
+            position: absolute;
+            top: 22px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 52px;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.6));
+        }
+        .game-name {
+            font-size: 15px;
+            font-weight: 800;
+            text-transform: uppercase;
+            text-align: center;
+            text-shadow: 0 2px 6px rgba(0,0,0,0.9);
+            z-index: 2;
+        }
+
+        /* Card Themes */
+        .bg-aviator { background: linear-gradient(160deg, #4a0e17 0%, #1a0508 100%); }
+        .bg-dice { background: linear-gradient(160deg, #4b1d70 0%, #1d0b2e 100%); }
+        .bg-gems { background: linear-gradient(160deg, #7d4e00 0%, #2b1a00 100%); }
+        .bg-chicken { background: linear-gradient(160deg, #1b4f72 0%, #0b2233 100%); }
+
+        /* Side Drawer Menu (Like Screenshot) */
+        .drawer-overlay {
+            position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
+            background: rgba(0,0,0,0.75);
+            z-index: 100;
+            display: none;
         }
-        .multiplier-display {
-            position: relative;
-            z-index: 10;
-            font-size: 54px;
-            font-weight: 800;
-            text-shadow: 0 4px 15px rgba(0,0,0,0.8);
+        .side-drawer {
+            position: fixed;
+            top: 0;
+            left: -280px;
+            width: 265px;
+            height: 100%;
+            background: #1a1c1a;
+            z-index: 101;
+            transition: left 0.3s ease;
+            padding: 15px 12px;
+            overflow-y: auto;
+            border-right: 1px solid #2e322e;
         }
-        .status-text {
-            position: relative;
-            z-index: 10;
-            font-size: 16px;
-            margin-top: 5px;
-            font-weight: 600;
-            color: #f39c12;
+        .side-drawer.open {
+            left: 0;
         }
-        .crashed {
-            color: #e50914 !important;
-        }
-        .controls-box {
-            width: 95%;
-            max-width: 580px;
-            background: #1b1c1d;
-            margin-top: 15px;
-            padding: 20px;
-            border-radius: 16px;
-            border: 1px solid #2c2d30;
-        }
-        .bet-row {
+        .menu-item {
+            background: #242724;
+            padding: 12px 14px;
+            border-radius: 10px;
+            margin-bottom: 8px;
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            gap: 15px;
+            justify-content: space-between;
+            color: #e0e4e0;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
         }
-        .input-group {
-            flex: 1;
+        .menu-item.active {
+            background: #2f3328;
+            border: 1px solid #f5d000;
+            color: #f5d000;
+        }
+        .menu-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .hot-tag {
+            background: #3a3518;
+            color: #f5d000;
+            font-size: 10px;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        .menu-group {
+            background: #242724;
+            border-radius: 12px;
+            padding: 5px 0;
+            margin-top: 12px;
+        }
+        .menu-sub-item {
+            padding: 11px 14px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #cfd4cf;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        .gold-text { color: #f5d000; font-weight: bold; }
+
+        /* Bottom Navigation Bar */
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            max-width: 480px;
+            background: #1b1d1b;
+            border-top: 1px solid #2d312d;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 8px 0;
+            z-index: 60;
+        }
+        .nav-item {
             display: flex;
             flex-direction: column;
-            gap: 8px;
-        }
-        .bet-input-wrapper {
-            display: flex;
             align-items: center;
-            background: #0e0e10;
-            border: 1px solid #3a3d42;
-            border-radius: 10px;
-            padding: 5px 10px;
-        }
-        .bet-input-wrapper button {
-            background: #2c2d30;
-            color: white;
-            border: none;
-            width: 30px;
-            height: 30px;
-            border-radius: 50%;
-            font-size: 18px;
-            cursor: pointer;
-        }
-        .bet-input-wrapper input {
-            width: 100%;
-            background: transparent;
-            border: none;
-            color: white;
-            text-align: center;
-            font-size: 18px;
-            font-weight: bold;
-            outline: none;
-        }
-        .quick-bets {
-            display: flex;
-            gap: 6px;
-        }
-        .quick-bets button {
-            flex: 1;
-            background: #26282b;
-            border: 1px solid #3a3d42;
-            color: #ccc;
-            padding: 5px;
-            border-radius: 6px;
-            cursor: pointer;
-            font-size: 12px;
-        }
-        .quick-bets button:hover {
-            background: #3a3d42;
-            color: white;
-        }
-        .action-btn {
-            flex: 1.2;
-            height: 75px;
-            border: none;
-            border-radius: 12px;
-            font-size: 20px;
-            font-weight: bold;
-            color: white;
-            cursor: pointer;
-            text-transform: uppercase;
-            transition: 0.2s;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.4);
-        }
-        .btn-bet { background: #28a745; }
-        .btn-bet:hover { background: #218838; }
-        .btn-cancel { background: #dc3545; }
-        .btn-cashout { background: #f39c12; color: #000; }
-        .btn-disabled { background: #444; cursor: not-allowed; opacity: 0.7; }
-        .notification {
-            margin-top: 15px;
-            padding: 10px 20px;
-            border-radius: 8px;
-            font-weight: bold;
-            display: none;
-            text-align: center;
-            width: 95%;
-            max-width: 580px;
-        }
-        .notif-win { background: rgba(40, 167, 69, 0.2); border: 1px solid #28a745; color: #28a745; }
-    </style>
-</head>
-<body>
-
-    <header>
-        <div class="logo">ALOK<span>1XWIN</span></div>
-        <div class="balance-box">🪙 <span id="balance">1000.00</span></div>
-    </header>
-
-    <div class="history-bar" id="historyBar">
-        <span class="badge mid">2.45x</span>
-        <span class="badge low">1.12x</span>
-        <span class="badge high">12.80x</span>
-        <span class="badge low">1.40x</span>
-        <span class="badge mid">3.15x</span>
-    </div>
-
-    <div class="game-container">
-        <canvas id="gameCanvas"></canvas>
-        <div class="multiplier-display" id="multiplier">1.00x</div>
-        <div class="status-text" id="statusText">अगले राउंड के लिए बेट लगाएं...</div>
-    </div>
-
-    <div id="winNotif" class="notification notif-win"></div>
-
-    <div class="controls-box">
-        <div class="bet-row">
-            <div class="input-group">
-                <div class="bet-input-wrapper">
-                    <button onclick="adjustBet(-10)">-</button>
-                    <input type="number" id="betAmount" value="50" min="10">
-                    <button onclick="adjustBet(10)">+</button>
-                </div>
-                <div class="quick-bets">
-                    <button onclick="setBet(50)">50</button>
-                    <button onclick="setBet(100)">100</button>
-                    <button onclick="setBet(500)">500</button>
-                </div>
-            </div>
-            <button id="actionBtn" class="action-btn btn-bet" onclick="handleAction()">BET</button>
-        </div>
-    </div>
-
-    <script>
-        let balance = 1000.00;
-        let currentMultiplier = 1.00;
-        let crashPoint = 1.00;
-        let gameState = 'WAITING';
-        let hasBet = false;
-        let cashedOut = false;
-        let currentBet = 0;
-        let animFrame;
-        let startTime;
-
-        const balanceEl = document.getElementById('balance');
-        const multEl = document.getElementById('multiplier');
-        const statusEl = document.getElementById('statusText');
-        const actionBtn = document.getElementById('actionBtn');
-        const betInput = document.getElementById('betAmount');
-        const historyBar = document.getElementById('historyBar');
-        const winNotif = document.getElementById('winNotif');
-        const canvas = document.getElementById('gameCanvas');
-        const ctx = canvas.getContext('2d');
-
-        function resizeCanvas() {
-            canvas.width = canvas.parentElement.clientWidth;
-            canvas.height = canvas.parentElement.clientHeight;
-        }
-        window.addEventListener('resize', resizeCanvas);
-        resizeCanvas();
-
-        function adjustBet(val) {
-            if (hasBet) return;
-            let current = parseFloat(betInput.value) || 10;
-            if (current + val >= 10) betInput.value = current + val;
-        }
-
-        function setBet(val) {
-            if (hasBet) return;
-            betInput.value = val;
-        }
-
-        function handleAction() {
-            if (gameState === 'WAITING') {
-                if (!hasBet) {
-                    let amount = parseFloat(betInput.value);
-                    if (isNaN(amount) || amount < 10 || amount > balance) {
-                        alert("सही राशि डालें या बैलेंस चेक करें!");
-                        return;
-                    }
-                    balance -= amount;
-                    currentBet = amount;
-                    hasBet = true;
-                    updateUI();
-                } else {
-                    balance += currentBet;
-                    hasBet = false;
-                    currentBet = 0;
-                    updateUI();
-                }
-            } else if (gameState === 'FLYING' && hasBet && !cashedOut) {
-                cashedOut = true;
-                let winAmount = currentBet * currentMultiplier;
-                balance += winAmount;
-                showNotification(`🎉 बधाई हो! आपने 🪙 ${winAmount.toFixed(2)} (${currentMultiplier.toFixed(2)}x) जीते!`);
-                updateUI();
-            }
-        }
-
-        function showNotification(msg) {
-            winNotif.innerText = msg;
+            
